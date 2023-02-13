@@ -4,7 +4,9 @@ services:
     image: nexo.io/hello-world:1.0.0
     build:
       context: .
-      dockerfile: dockerfiles/hello-world/Dockerfile  
+      dockerfile: dockerfiles/hello-world/Dockerfile
+      args:
+        - TIME_ZONE=Europe/Sofia
     container_name: hello-world
     hostname: hello-world
     ports:
