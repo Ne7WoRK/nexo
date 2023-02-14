@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   hello-world:
-    image: nexo.io/hello-world:1.0.0
+    image: nexo.io/hello-world:0.0.0
     build:
       context: .
       dockerfile: dockerfiles/hello-world/Dockerfile

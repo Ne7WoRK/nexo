@@ -1,0 +1,27 @@
+on:
+push:
+branches:
+- '*'
+
+jobs:
+build-and-push:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout code
+  uses: actions/checkout@v2
+
+- name: Start docker-compose
+  run: docker-compose up -d
+
+- name: Build and Push Docker images
+  if: startsWith(github.ref, 'refs/tags/')
+  env:
+    TAG_NAME: ${{ github.ref }}
+  run: |
+    docker tag nexo.io/hello-world:0.0.0 ne7work/nexo.io:hello-world-${TAG_NAME}
+    docker push ne7work/nexo.io:hello-world-${TAG_NAME}
+
+- name: Stop docker-compose and clean-up
+  run: |
+    docker-compose down
+    docker rmi -f nexo.io/hello-world:0.0.0 
