@@ -1,3 +1,6 @@
+## Local build
+```docker-compose up -d```
+
 ## Docker
 
 ### hello-world 

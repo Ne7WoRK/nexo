@@ -11,6 +11,7 @@ RUN cp /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime \
  && echo ${TIME_ZONE} > /etc/timezone               \
  && apk del tzdata
 
+#Database credentials
 ENV POSTGRES_USER ${POSTGRES_USER}
 ENV POSTGRES_PASSWORD ${POSTGRES_PASSWORD}
 ENV POSTGRES_DB ${POSTGRES_DB}

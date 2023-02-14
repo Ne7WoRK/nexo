@@ -13,6 +13,7 @@ services:
       - POSTGRES_DB=nexodb
     container_name: database
     hostname: database
+    restart: always
   hello-world:
     image: nexo.io/hello-world:0.0.0
     build:
@@ -24,7 +25,7 @@ services:
     hostname: hello-world
     ports:
       - "80:80"
-    restart: unless-stopped
+    restart: always
     depends_on:
       database:
         condition: service_healthy
