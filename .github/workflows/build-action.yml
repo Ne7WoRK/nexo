@@ -28,15 +28,24 @@ jobs:
         username: ${{ env.DOCKER_USERNAME }}
         password: ${{ env.DOCKER_TOKEN }}
 
-    - name: Build and Tag Docker images
+    - name: Tag and push hello-world
       if: startsWith(github.ref, 'refs/tags/')
       env:
         TAG_NAME: ${{  github.ref_name }}
       run: |
         docker tag nexo.io/hello-world:0.0.0 ne7work/nexo.io:hello-world-${TAG_NAME}
         docker push ne7work/nexo.io:hello-world-${TAG_NAME}
+    
+    - name: Tag and push database
+      if: startsWith(github.ref, 'refs/tags/')
+      env:
+        TAG_NAME: ${{  github.ref_name }}
+      run: |
+        docker tag nexo.io/database:0.0.0 ne7work/nexo.io/:database-${TAG_NAME}
+        docker push ne7work/nexo.io/:database-${TAG_NAME}
 
     - name: Stop docker-compose and clean-up
       run: |
         docker-compose down
-        docker rmi -f nexo.io/hello-world:0.0.0 
+        docker rmi -f nexo.io/hello-world:0.0.0
+        docker rmi -f nexo.io/database:0.0.0
