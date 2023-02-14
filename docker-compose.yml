@@ -1,5 +1,18 @@
 version: "3.8"
 services:
+  database:
+    image: nexo.io/database:0.0.0
+    build:
+      context: .
+      dockerfile: dockerfiles/database/Dockerfile
+      args:
+        - TIME_ZONE=Europe/Sofia
+    environment:
+      - POSTGRES_USER=nexo
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=nexodb
+    container_name: database
+    hostname: database
   hello-world:
     image: nexo.io/hello-world:0.0.0
     build:
@@ -12,3 +25,6 @@ services:
     ports:
       - "80:80"
     restart: unless-stopped
+    depends_on:
+      database:
+        condition: service_healthy
