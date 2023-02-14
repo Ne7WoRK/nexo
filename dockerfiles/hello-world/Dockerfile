@@ -17,6 +17,6 @@ WORKDIR /app
 # Get npm dependencies for the project
 RUN npm install
 
-EXPOSE 80
+EXPOSE 80 
 
 CMD [ "node", "app.js" ]
