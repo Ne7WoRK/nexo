@@ -41,8 +41,8 @@ jobs:
       env:
         TAG_NAME: ${{  github.ref_name }}
       run: |
-        docker tag nexo.io/database:0.0.0 ne7work/nexo.io/:database-${TAG_NAME}
-        docker push ne7work/nexo.io/:database-${TAG_NAME}
+        docker tag nexo.io/database:0.0.0 ne7work/nexo.io:database-${TAG_NAME}
+        docker push ne7work/nexo.io:database-${TAG_NAME}
 
     - name: Stop docker-compose and clean-up
       run: |
