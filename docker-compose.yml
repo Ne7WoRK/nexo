@@ -1,4 +1,7 @@
 version: "3.8"
+volumes:
+  database-data:
+    name: "database-data"
 services:
   database:
     image: nexo.io/database:0.0.0
@@ -11,6 +14,8 @@ services:
       - POSTGRES_USER=nexo
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=nexodb
+    volumes:
+      - "database-data:/var/lib/postgresql/data"
     container_name: database
     hostname: database
     restart: always
