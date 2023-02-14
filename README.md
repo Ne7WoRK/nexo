@@ -11,6 +11,14 @@ The application itself established connection to psql database and retrieves the
 ### database container
 Straightforward dockerfile where we use lightweight alpine image to run the **database** for our dummy app. The timezone is adjusted through build arguments passed to the ```docker-compose``` build. Database credentials are set through environment variables. This is considered as safe approach as the database port will not be **published** and will be accessible **only** through the ```docker-compose network``` established when the compose stack is started.
 
+### docker volumes
+We use the concept of named volumes to ensure that database data will persist on container update. We also define a name for the named volume to override docker's default naming stategy for named volumes.
+```
+volumes:
+  database-data:
+    name: "database-data"
+```
+
 ## Docker-compose
 ```docker-compose build``` feature was used to ensure integration testing of new functionalities. This is particularly useful when we have multiple microservices which ```depend_on``` each other, which is usually the case in enterprise applications. Building and running the whole ```docker-compose``` stack ensures the images are not only build, but they are also started as part of the ```docker-compose``` stack. This approach can partially guarantee that modifications or new features will not break the application.
 
