@@ -34,7 +34,7 @@ Releases would be done through tagging the ```main``` branch, which will be *gol
 **NOTE:** In current implementation images that are not build from **git tags** are ignored and deleted after the build has been completed. However, this could be further enhanced by pushing dev images to a docker registry such as **Docker hub / JFrog / Nexus** and defining e.g. 30 days expiration time.
 
 ## Docker registry
-You can review the docker registry for this repository can be accessed through the below link
+You can review the docker registry for this repository through the below link
 https://hub.docker.com/r/ne7work/nexo.io
 
 ## Kubernetes (minikube)
